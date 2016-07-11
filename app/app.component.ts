@@ -1,22 +1,9 @@
-import { Component } from "@angular/core"
+import { Component, OnInit } from "@angular/core"
 
-export class Hero {
-	id: number
-	name: string
-}
+import { Hero } from "./hero"
+import { HeroService } from "./hero.service"
 
-const HEROES: Hero[] = [
-	{ id: 11, name: 'Mr. Nice' },
-	{ id: 12, name: 'Narco' },
-	{ id: 13, name: 'Bombasto' },
-	{ id: 14, name: 'Celeritas' },
-	{ id: 15, name: 'Magneta' },
-	{ id: 16, name: 'RubberMan' },
-	{ id: 17, name: 'Dynama' },
-	{ id: 18, name: 'Dr IQ' },
-	{ id: 19, name: 'Magma' },
-	{ id: 20, name: 'Tornado' }
-]
+import { HeroDetailComponent } from "./hero-detail.component"
 
 @Component({
 	selector: "app",
@@ -31,28 +18,34 @@ const HEROES: Hero[] = [
 				{{hero.name}}
 			</li>
 		</ul>
-		<div *ngIf="selectedHero">
-		<h2>{{selectedHero.name}} details!</h2>
-		<div>
-			<label>id: </label>
-			{{selectedHero.id}}
-		</div>
-		<div>
-			<label>name: </label>
-			<input [(ngModel)]="selectedHero.name" placeholder="name">
-		</div>
-		</div>
-
+		<my-hero-detail [hero]="selectedHero">
+		</my-hero-detail>
 	`,
-	styles: [".selected{background-color:#CFD8DC!important;color:#fff}.heroes{margin:0 0 2em;list-style-type:none;padding:0;width:15em}.heroes li{cursor:pointer;position:relative;left:0;background-color:#EEE;margin:.5em;padding:.3em 0;height:1.6em;border-radius:4px}.heroes li.selected:hover{background-color:#BBD8DC!important;color:#fff}.heroes li:hover{color:#607D8B;background-color:#DDD;left:.1em}.heroes .text{position:relative;top:-3px}.heroes .badge{display:inline-block;font-size:small;color:#fff;padding:.8em .7em 0;background-color:coral;line-height:1em;position:relative;left:-1px;top:-4px;height:1.8em;margin-right:.8em;border-radius:4px 0 0 4px}"]
+	styles: [".selected{background-color:#CFD8DC!important;color:#fff}.heroes{margin:0 0 2em;list-style-type:none;padding:0;width:15em}.heroes li{cursor:pointer;position:relative;left:0;background-color:#EEE;margin:.5em;padding:.3em 0;height:1.6em;border-radius:4px}.heroes li.selected:hover{background-color:#BBD8DC!important;color:#fff}.heroes li:hover{color:#607D8B;background-color:#DDD;left:.1em}.heroes .text{position:relative;top:-3px}.heroes .badge{display:inline-block;font-size:small;color:#fff;padding:.8em .7em 0;background-color:coral;line-height:1em;position:relative;left:-1px;top:-4px;height:1.8em;margin-right:.8em;border-radius:4px 0 0 4px}"],
+	directives: [HeroDetailComponent],
+	providers: [HeroService]
 })
 
-export class AppComponent {
-	title = "Tour of Heroes"
-	heroes = HEROES
+export class AppComponent implements OnInit {
+	title: string
+	heroes: Hero[]
 	selectedHero: Hero
 
-	onSelect(hero: Hero) {
+	constructor(private heroService: HeroService) {
+		this.title = "Tour of Heroes"
+	}
+
+	ngOnInit(): void {
+		this.getHeroes()
+	}
+
+	getHeroes(): void {
+		this.heroService.getHeroes().then( heroes => {
+			this.heroes = heroes
+		})
+	}
+
+	onSelect(hero: Hero): void {
 		this.selectedHero = hero
 	}
 }
