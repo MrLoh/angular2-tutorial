@@ -5,8 +5,8 @@ import { HeroService } from "./+heroes"
 
 @Component({
 	selector: "app",
-	templateUrl: "app/app.component.html",
-	styleUrls: ["app/app.component.css"],
+	templateUrl: "dist/app.component.html",
+	styleUrls: ["dist/app.component.css"],
 	directives: [ROUTER_DIRECTIVES],
 	providers: [
 		HeroService

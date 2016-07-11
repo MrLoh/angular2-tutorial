@@ -18,8 +18,8 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: "app",
-            templateUrl: "app/app.component.html",
-            styleUrls: ["app/app.component.css"],
+            templateUrl: "dist/app.component.html",
+            styleUrls: ["dist/app.component.css"],
             directives: [router_1.ROUTER_DIRECTIVES],
             providers: [
                 _heroes_1.HeroService

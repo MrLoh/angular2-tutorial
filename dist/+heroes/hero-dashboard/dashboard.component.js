@@ -32,7 +32,7 @@ var DashboardComponent = (function () {
         core_1.Component({
             selector: "my-dashboard",
             templateUrl: "app/+heroes/hero-dashboard/dashboard.component.html",
-            styleUrls: ["app/+heroes/hero-dashboard/dashboard.component.css"]
+            styleUrls: ["dist/+heroes/hero-dashboard/dashboard.component.css"]
         }), 
         __metadata('design:paramtypes', [shared_1.HeroService, router_1.Router])
     ], DashboardComponent);

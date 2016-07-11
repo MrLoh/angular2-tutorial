@@ -6,7 +6,7 @@ import { Hero, HeroService } from "../shared"
 @Component({
 	selector: "my-hero-detail",
 	templateUrl: "app/+heroes/hero-detail/hero-detail.component.html",
-	styleUrls: ["app/+heroes/hero-detail/hero-detail.component.css"]
+	styleUrls: ["dist/+heroes/hero-detail/hero-detail.component.css"]
 })
 
 export class HeroDetailComponent implements OnInit, OnDestroy {
