@@ -5,18 +5,15 @@ import { HeroService } from "./hero.service"
 import { HeroesComponent } from "./heroes.component"
 
 @Component({
-    selector: "app",
-    template: `
-        <h1>{{title}}</h1>
-        <a [routerLink]="['/heroes']">Heroes</a>
-        <router-outlet></router-outlet>
-    `,
-    directives: [ROUTER_DIRECTIVES],
-    providers: [
-        HeroService
-    ]
+	selector: "app",
+	templateUrl: "app/app.component.html",
+	styleUrls: ["app/app.component.css"],
+	directives: [ROUTER_DIRECTIVES],
+	providers: [
+		HeroService
+	]
 })
 
 export class AppComponent {
-    title = "Tour of Heroes"
+	title = "Tour of Heroes"
 }

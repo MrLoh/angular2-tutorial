@@ -19,6 +19,13 @@ var HeroService = (function () {
         //     setTimeout(() => resolve(HEROES), 2000)
         // })
     };
+    HeroService.prototype.getHero = function (id) {
+        var hero = mock_heroes_1.HEROES.find(function (hero) { return hero.id === id; });
+        return Promise.resolve(hero);
+        // return this.getHeroes().then(heroes => {
+        // 	heroes.find(hero => hero.id === id)
+        // })
+    };
     HeroService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [])
