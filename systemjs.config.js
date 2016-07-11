@@ -8,14 +8,21 @@
         'app':                        'dist', // 'dist',
         '@angular':                   'node_modules/@angular',
         'angular2-in-memory-web-api': 'node_modules/angular2-in-memory-web-api',
-        'rxjs':                       'node_modules/rxjs'
+        'rxjs':                       'node_modules/rxjs',
     };
     // packages tells the System loader how to load when no filename and/or no extension
     var packages = {
         'app':                        { main: 'main.js',  defaultExtension: 'js' },
         'rxjs':                       { defaultExtension: 'js' },
-        'angular2-in-memory-web-api': { main: 'index.js', defaultExtension: 'js' },
+        'angular2-in-memory-web-api': { main: 'index.js', defaultExtension: 'js' }
     };
+    var subPackageNames = [
+        '+heroes',
+        '+heroes/shared',
+        '+heroes/hero-list',
+        '+heroes/hero-detail',
+        '+heroes/hero-dashboard'
+    ];
     var ngPackageNames = [
         'common',
         'compiler',
@@ -29,8 +36,8 @@
         'upgrade',
     ];
     // Individual files (~300 requests):
-    function packIndex(pkgName) {
-        packages['@angular/'+pkgName] = { main: 'index.js', defaultExtension: 'js' };
+    function packIndex(pkgName, baseName) {
+        packages[baseName+pkgName] = { main: 'index.js', defaultExtension: 'js' };
     }
     // Bundled (~40 requests):
     function packUmd(pkgName) {
@@ -39,7 +46,8 @@
     // Most environments should use UMD; some (Karma) need the individual index files
     var setPackageConfig = System.packageWithIndex ? packIndex : packUmd;
     // Add package entries for angular packages
-    ngPackageNames.forEach(setPackageConfig);
+    ngPackageNames.forEach(name => setPackageConfig(name, '@angular/'));
+    subPackageNames.forEach(name => packIndex(name, 'app/'));
     var config = {
         map: map,
         packages: packages

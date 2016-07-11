@@ -1,8 +1,6 @@
 "use strict";
 var router_1 = require("@angular/router");
-var heroes_component_1 = require("./heroes.component");
-var dashboard_component_1 = require("./dashboard.component");
-var hero_detail_component_1 = require("./hero-detail.component");
+var _heroes_1 = require("./+heroes");
 var routes = [
     {
         path: "",
@@ -10,13 +8,13 @@ var routes = [
         pathMatch: "full"
     }, {
         path: "heroes",
-        component: heroes_component_1.HeroesComponent
+        component: _heroes_1.HeroesComponent
     }, {
         path: "dashboard",
-        component: dashboard_component_1.DashboardComponent
+        component: _heroes_1.DashboardComponent
     }, {
         path: "detail/:id",
-        component: hero_detail_component_1.HeroDetailComponent
+        component: _heroes_1.HeroDetailComponent
     }
 ];
 exports.APP_ROUTER_PROVIDERS = [

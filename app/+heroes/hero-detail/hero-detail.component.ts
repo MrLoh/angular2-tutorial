@@ -1,13 +1,12 @@
 import { Component, OnInit, OnDestroy } from "@angular/core"
 import { ActivatedRoute } from "@angular/router"
 
-import { Hero } from "./hero"
-import { HeroService } from "./hero.service"
+import { Hero, HeroService } from "../shared"
 
 @Component({
 	selector: "my-hero-detail",
-	templateUrl: "app/hero-detail.component.html",
-	styleUrls: ["app/hero-detail.component.css"]
+	templateUrl: "app/+heroes/hero-detail/hero-detail.component.html",
+	styleUrls: ["app/+heroes/hero-detail/hero-detail.component.css"]
 })
 
 export class HeroDetailComponent implements OnInit, OnDestroy {
