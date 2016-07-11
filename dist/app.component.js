@@ -9,34 +9,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
 var hero_service_1 = require("./hero.service");
-var hero_detail_component_1 = require("./hero-detail.component");
 var AppComponent = (function () {
-    function AppComponent(heroService) {
-        this.heroService = heroService;
+    function AppComponent() {
         this.title = "Tour of Heroes";
     }
-    AppComponent.prototype.ngOnInit = function () {
-        this.getHeroes();
-    };
-    AppComponent.prototype.getHeroes = function () {
-        var _this = this;
-        this.heroService.getHeroes().then(function (heroes) {
-            _this.heroes = heroes;
-        });
-    };
-    AppComponent.prototype.onSelect = function (hero) {
-        this.selectedHero = hero;
-    };
     AppComponent = __decorate([
         core_1.Component({
             selector: "app",
-            template: "\n\t\t<h1>{{title}}</h1>\n\t\t<h2>My Heroes</h2>\n\t\t<ul class=\"heroes\">\n\t\t\t<li *ngFor=\"let hero of heroes\"\n\t\t\t\t(click)=\"onSelect(hero)\"\n\t\t\t\t[class.selected]=\"hero === selectedHero\">\n\t\t\t\t<span class=\"badge\">{{hero.id}}</span>\n\t\t\t\t{{hero.name}}\n\t\t\t</li>\n\t\t</ul>\n\t\t<my-hero-detail [hero]=\"selectedHero\">\n\t\t</my-hero-detail>\n\t",
-            styles: [".selected{background-color:#CFD8DC!important;color:#fff}.heroes{margin:0 0 2em;list-style-type:none;padding:0;width:15em}.heroes li{cursor:pointer;position:relative;left:0;background-color:#EEE;margin:.5em;padding:.3em 0;height:1.6em;border-radius:4px}.heroes li.selected:hover{background-color:#BBD8DC!important;color:#fff}.heroes li:hover{color:#607D8B;background-color:#DDD;left:.1em}.heroes .text{position:relative;top:-3px}.heroes .badge{display:inline-block;font-size:small;color:#fff;padding:.8em .7em 0;background-color:coral;line-height:1em;position:relative;left:-1px;top:-4px;height:1.8em;margin-right:.8em;border-radius:4px 0 0 4px}"],
-            directives: [hero_detail_component_1.HeroDetailComponent],
-            providers: [hero_service_1.HeroService]
+            template: "\n        <h1>{{title}}</h1>\n        <a [routerLink]=\"['/heroes']\">Heroes</a>\n        <router-outlet></router-outlet>\n    ",
+            directives: [router_1.ROUTER_DIRECTIVES],
+            providers: [
+                hero_service_1.HeroService
+            ]
         }), 
-        __metadata('design:paramtypes', [hero_service_1.HeroService])
+        __metadata('design:paramtypes', [])
     ], AppComponent);
     return AppComponent;
 }());
